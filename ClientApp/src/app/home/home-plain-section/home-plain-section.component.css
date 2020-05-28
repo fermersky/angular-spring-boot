@@ -1,0 +1,43 @@
+.plain-section-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.plain-section {
+  display: flex;
+  justify-content: flex-start;
+
+  width: 70%;
+  min-height: 200px;
+  background: #fff;
+  box-shadow: 0 5px 15px #ccc;
+
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.plain-section__image {
+  max-width: 20%;
+
+  display: flex;
+  align-items: center;
+}
+
+.plain-section__image > img {
+  max-width: 100%;
+}
+
+.plain-section-text {
+  margin: 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.plain-section-title {
+  font-size: 22px;
+}
+
+.plain-section-description {
+  color: rgb(46, 46, 46);
+}

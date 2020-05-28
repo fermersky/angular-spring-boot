@@ -1,0 +1,19 @@
+.splitter-wrap {
+  width: 100%;
+  margin: 30px;
+
+  display: flex;
+}
+
+.spl-dots {
+  display: flex;
+  flex-direction: column;
+}
+
+.spl-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+
+  margin: 10px 0;
+}

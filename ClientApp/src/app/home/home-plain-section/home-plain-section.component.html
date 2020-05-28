@@ -1,0 +1,17 @@
+<div class="plain-section-wrap">
+  <div
+    class="plain-section"
+    [ngStyle]="{
+      flexDirection: imagePosition == 'left' ? 'row' : 'row-reverse'
+    }"
+  >
+    <div class="plain-section__image">
+      <img class="" [src]="imageSrc" [alt]="title" />
+    </div>
+
+    <div class="plain-section-text">
+      <h3 class="plain-section-title">{{ title }}</h3>
+      <h4 class="plain-section-description">{{ description }}</h4>
+    </div>
+  </div>
+</div>
