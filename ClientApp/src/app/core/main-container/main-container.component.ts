@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
     `
       .main-container {
         min-height: 77vh;
-        padding: 70px 60px;
+        padding: 60px 0px;
         background-image: linear-gradient(#fdfbfb 0%, #ebedee 100%);
       }
     `,

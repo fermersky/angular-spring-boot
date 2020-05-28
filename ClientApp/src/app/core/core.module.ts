@@ -1,4 +1,5 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { EnsureModuleLoadedOnceGuard } from './ensure-module-loaded-once.guard';
 import { HeaderComponent } from './header/header.component';
@@ -7,7 +8,7 @@ import { MainContainerComponent } from './main-container/main-container.componen
 
 @NgModule({
   declarations: [HeaderComponent, MainContainerComponent],
-  imports: [MaterialModule],
+  imports: [MaterialModule, RouterModule],
   exports: [HeaderComponent, MainContainerComponent],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
