@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
   `,
   styles: [
     `
-      .app-main-container {
+      .main-container {
         min-height: 77vh;
-        padding: 40px;
-        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        padding: 70px 60px;
+        background-image: linear-gradient(#fdfbfb 0%, #ebedee 100%);
       }
     `,
   ],
