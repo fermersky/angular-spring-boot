@@ -39,7 +39,7 @@ public class BookController extends RestControllerBase {
         }
     }
 
-    @GetMapping("/books{id}")
+    @GetMapping("/books/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id")long id) {
         try {
             Optional<Book> book = bookRepository.findById(id);
@@ -87,6 +87,7 @@ public class BookController extends RestControllerBase {
             bookToUpdate.setGenre(book.getGenre());
             bookToUpdate.setFilename(book.getFilename());
             bookToUpdate.setYear(book.getYear());
+            bookToUpdate.setDescription(book.getDescription());
 
             if (book.getAuthorId() != null) {
                 Optional<Author> author = authorRepository.findById(book.getAuthorId());
@@ -107,11 +108,21 @@ public class BookController extends RestControllerBase {
     }
 
     @DeleteMapping("/books/{id}")
-    private ResponseEntity<HttpStatus> deleteBook(@PathVariable("id")long id) {
+    public ResponseEntity<HttpStatus> deleteBook(@PathVariable("id")long id) {
         try {
             bookRepository.deleteById(id);
             return noContent();
         } catch (Exception e) {
+            return internalError();
+        }
+    }
+
+    @DeleteMapping("/books/")
+    public ResponseEntity<HttpStatus> deleteAllBooks() {
+        try {
+            bookRepository.deleteAll();
+            return noContent();
+        } catch (Exception ex) {
             return internalError();
         }
     }

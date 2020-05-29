@@ -24,6 +24,9 @@ public class Book {
     @Column(name = "genre")
     private String genre;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "year")
     private int year;
 
@@ -112,5 +115,15 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    //
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

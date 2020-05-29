@@ -3,6 +3,7 @@ package org.fermer.danielapi.dtos;
 public class BookDto {
     private String title;
     private String genre;
+    private String description;
     private Long authorId;
     private int year;
     private String filename;
@@ -59,5 +60,15 @@ public class BookDto {
 
     public Long getAuthorId() {
         return authorId;
+    }
+
+    //
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
