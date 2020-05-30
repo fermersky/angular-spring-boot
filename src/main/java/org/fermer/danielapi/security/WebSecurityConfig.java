@@ -28,7 +28,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         String[] resources = new String[]{
-                "/images/**", "/images/authors/**"
+                "/images/**", "/images/authors/**","/images/books/**"
         };
 
         http

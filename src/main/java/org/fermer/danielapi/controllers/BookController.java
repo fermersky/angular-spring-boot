@@ -63,7 +63,15 @@ public class BookController extends RestControllerBase {
                 return notFound();
             }
 
-            Book bookToSave = new Book(book.getTitle(), book.getGenre(), book.getYear(), book.getFilename(), author.get());
+            Book bookToSave = new Book(
+                    book.getTitle(),
+                    book.getGenre(),
+                    book.getYear(),
+                    book.getFilename(),
+                    book.getCover(),
+                    author.get()
+
+            );
             bookRepository.save(bookToSave);
 
             return created(bookToSave);
@@ -85,8 +93,9 @@ public class BookController extends RestControllerBase {
 
             bookToUpdate.setTitle(book.getTitle());
             bookToUpdate.setGenre(book.getGenre());
-            bookToUpdate.setFilename(book.getFilename());
             bookToUpdate.setYear(book.getYear());
+            bookToUpdate.setFilename(book.getFilename());
+            bookToUpdate.setCover(book.getCover());
             bookToUpdate.setDescription(book.getDescription());
 
             if (book.getAuthorId() != null) {

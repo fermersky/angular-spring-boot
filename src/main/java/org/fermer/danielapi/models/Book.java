@@ -36,17 +36,21 @@ public class Book {
     @Column(name = "filename")
     private String filename;
 
+    @Column(name = "cover")
+    private String cover;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "author_id")
     private Author author;
 
     public Book() {}
 
-    public Book(String title, String genre, int year, String filename, Author author) {
+    public Book(String title, String genre, int year, String filename, String cover, Author author) {
         this.title = title;
         this.genre = genre;
         this.year = year;
         this.filename = filename;
+        this.cover = cover;
         this.author = author;
     }
 
@@ -125,5 +129,15 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    //
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }
