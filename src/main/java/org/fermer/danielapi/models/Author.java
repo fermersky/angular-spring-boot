@@ -36,6 +36,12 @@ public class Author {
 
     public Author() {}
 
+    public Author(long id, String firstname, String lastname) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public Author(String firstname, String lastname, Image image) {
         this.firstname = firstname;
         this.lastname = lastname;

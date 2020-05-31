@@ -19,9 +19,15 @@ public class AuthorController extends RestControllerBase {
     private AuthorRepository authorRepository;
 
     @GetMapping("/authors")
-    public ResponseEntity<List<Author>> getAllAuthors() {
+    public ResponseEntity<List<Author>> getAllAuthors(@RequestParam(name = "withImages", defaultValue = "true")boolean withImages) {
         try {
-            List<Author> authors = authorRepository.findAll();
+            List<Author> authors = null;
+
+            if (withImages) {
+                authors = authorRepository.findAll();
+            } else {
+                authors = authorRepository.findAllWithoutImages();
+            }
 
             if (authors == null || authors.isEmpty()) {
                 return notFound();
