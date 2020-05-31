@@ -1,0 +1,33 @@
+.books-main-image {
+  margin: 30px auto;
+  max-width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.books-main-image > img {
+  max-width: 100%;
+}
+
+.books-main-title {
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  font-family: "Abril Fatface", cursive;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+}
+
+.books-main-splitter {
+  display: flex;
+  justify-content: center;
+}
+
+.book-grid {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}

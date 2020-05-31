@@ -1,0 +1,21 @@
+<div class="books-main-container">
+  <div class="books-main-image">
+    <img src="../../../assets/images/undraw_reading_list_4boi.svg" alt="Girsl is reading" />
+  </div>
+
+  <!-- TODO: remove this -->
+  <h1 class="books-main-title">Choose the favorite one!</h1>
+
+  <!-- <code>{{ fetchedBooks$ | async | json }}</code> -->
+
+  <div class="book-grid">
+    <bks-shared-book
+      *ngFor="let b of fetchedBooks$ | async"
+      [id]="b.id"
+      [title]="b.title"
+      [author]="b.author.firstname + ' ' + b.author.lastname"
+      [genre]="b.genre"
+      imageSrc="{{ b.image.picBytes | toBase64 }}"
+    ></bks-shared-book>
+  </div>
+</div>
