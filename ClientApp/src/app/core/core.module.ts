@@ -1,6 +1,7 @@
 // anuglar
 import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // modules
 import { MaterialModule } from '../material/material.module';
@@ -13,10 +14,14 @@ import { HeaderComponent } from './header/header.component';
 import { MainContainerComponent } from './main-container/main-container.component';
 import { FooterComponent } from './footer/footer.component';
 
+// services
+import { BooksService } from './services/books.service';
+
 @NgModule({
   declarations: [HeaderComponent, MainContainerComponent, FooterComponent],
-  imports: [MaterialModule, RouterModule],
+  imports: [MaterialModule, RouterModule, HttpClientModule],
   exports: [HeaderComponent, MainContainerComponent, FooterComponent],
+  providers: [BooksService],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
