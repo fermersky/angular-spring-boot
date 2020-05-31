@@ -1,7 +1,5 @@
 package org.fermer.danielapi.repositories;
 
-import org.fermer.danielapi.core.additionalmodels.AuthorWithoutImage;
-import org.fermer.danielapi.core.repositories.author.AuthorRepositoryCustom;
 import org.fermer.danielapi.models.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

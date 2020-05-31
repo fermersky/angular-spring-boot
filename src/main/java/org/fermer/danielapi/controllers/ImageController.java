@@ -18,7 +18,7 @@ public class ImageController extends RestControllerBase {
     @Autowired
     ImageRepository imageRepository;
 
-    @PostMapping("/image/upload")
+    @PostMapping("/images/upload")
     public ResponseEntity<Image> upload(@RequestParam("imageFile") MultipartFile file) throws IOException, IOException {
         Image img = new Image(file.getOriginalFilename(), file.getContentType(), file.getBytes());
         imageRepository.save(img);
@@ -26,7 +26,7 @@ public class ImageController extends RestControllerBase {
         return created(img);
     }
 
-    @GetMapping(path = { "/image/get/{id}" })
+    @GetMapping(path = { "/images/get/{id}" })
     public ResponseEntity<Image> getImage(@PathVariable("id") long id) throws IOException {
         Optional<Image> retrievedImage = imageRepository.findById(id);
 

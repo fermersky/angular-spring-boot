@@ -36,9 +36,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/signin").anonymous()
                 .antMatchers(resources).anonymous()
-                .antMatchers(HttpMethod.GET, "/api/authors/*").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/books/*").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/image/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/authors/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/books/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
