@@ -1,0 +1,26 @@
+<div class="book-container">
+  <div class="book-cover-wrap">
+    <div class="book-img--blured" [ngStyle]="{ backgroundImage: 'url(' + imageSrc + ')' }">
+      <div class="book-img-normal-wrap">
+        <img class="book-img--normal" [src]="imageSrc" />
+      </div>
+    </div>
+  </div>
+  <div class="book-info">
+    <h3 class="book-title"><i class="fas fa-book"></i>{{ title }}</h3>
+    <a
+      class="book-view-details-btn"
+      [routerLink]="['/book/' + id]"
+      mat-fab
+      color="primary"
+      aria-label="Example icon button with a heart icon"
+    >
+      <mat-icon>remove_red_eye</mat-icon>
+    </a>
+
+    <h4 class="book-author">
+      <i class="fas fa-feather-alt"></i>
+      {{ author }}
+    </h4>
+  </div>
+</div>
