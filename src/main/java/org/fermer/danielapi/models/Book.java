@@ -1,11 +1,6 @@
 package org.fermer.danielapi.models;
 
-import com.fasterxml.jackson.annotation.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 @Table(name = "books")
@@ -36,8 +31,9 @@ public class Book {
     @Column(name = "filename")
     private String filename;
 
-    @Column(name = "cover")
-    private String cover;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "image_id")
+    private Image image;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "author_id")
@@ -45,12 +41,12 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, String genre, int year, String filename, String cover, Author author) {
+    public Book(String title, String genre, int year, String filename, Image image, Author author) {
         this.title = title;
         this.genre = genre;
         this.year = year;
         this.filename = filename;
-        this.cover = cover;
+        this.image = image;
         this.author = author;
     }
 
@@ -133,11 +129,11 @@ public class Book {
 
     //
 
-    public String getCover() {
-        return cover;
+    public Image getImage() {
+        return image;
     }
 
-    public void setCover(String cover) {
-        this.cover = cover;
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

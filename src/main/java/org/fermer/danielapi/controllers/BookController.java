@@ -4,13 +4,16 @@ import org.fermer.danielapi.core.RestControllerBase;
 import org.fermer.danielapi.dtos.BookDto;
 import org.fermer.danielapi.models.Author;
 import org.fermer.danielapi.models.Book;
+import org.fermer.danielapi.models.Image;
 import org.fermer.danielapi.repositories.AuthorRepository;
 import org.fermer.danielapi.repositories.BookRepository;
+import org.fermer.danielapi.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +26,9 @@ public class BookController extends RestControllerBase {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
 
     @GetMapping("/books")
     public ResponseEntity<List<Book>> getAllBooks() {
@@ -63,12 +69,18 @@ public class BookController extends RestControllerBase {
                 return notFound();
             }
 
+            Optional<Image> image = imageRepository.findById(book.getImageId());
+
+            if (image.isEmpty()) {
+                return notFound();
+            }
+
             Book bookToSave = new Book(
                     book.getTitle(),
                     book.getGenre(),
                     book.getYear(),
                     book.getFilename(),
-                    book.getCover(),
+                    image.get(),
                     author.get()
 
             );
@@ -95,7 +107,6 @@ public class BookController extends RestControllerBase {
             bookToUpdate.setGenre(book.getGenre());
             bookToUpdate.setYear(book.getYear());
             bookToUpdate.setFilename(book.getFilename());
-            bookToUpdate.setCover(book.getCover());
             bookToUpdate.setDescription(book.getDescription());
 
             if (book.getAuthorId() != null) {
@@ -106,6 +117,16 @@ public class BookController extends RestControllerBase {
                 }
 
                 bookToUpdate.setAuthor(author.get());
+            }
+
+            if (book.getImageId() != null) {
+                Optional<Image> image = imageRepository.findById(book.getImageId());
+
+                if (image.isEmpty()) {
+                    return notFound();
+                }
+
+                bookToUpdate.setImage(image.get());
             }
 
             Book result = bookRepository.save(bookToUpdate);

@@ -38,6 +38,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(resources).anonymous()
                 .antMatchers(HttpMethod.GET, "/api/authors/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/books/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/image/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

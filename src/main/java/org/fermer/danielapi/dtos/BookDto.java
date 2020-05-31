@@ -7,7 +7,7 @@ public class BookDto {
     private Long authorId;
     private int year;
     private String filename;
-    private String cover;
+    private Long imageId;
 
     public BookDto() {}
 
@@ -75,11 +75,11 @@ public class BookDto {
 
     //
 
-    public void setCover(String cover) {
-        this.cover = cover;
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
     }
 
-    public String getCover() {
-        return cover;
+    public Long getImageId() {
+        return imageId;
     }
 }

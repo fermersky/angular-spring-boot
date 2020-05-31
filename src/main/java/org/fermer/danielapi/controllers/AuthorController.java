@@ -52,7 +52,7 @@ public class AuthorController extends RestControllerBase {
     public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
         try {
             Author authorToSave = authorRepository
-                    .save(new Author(author.getFirstname(), author.getLastname(), author.getPhoto()));
+                    .save(new Author(author.getFirstname(), author.getLastname(), null));
             return created(authorToSave);
         } catch (Exception e) {
             return internalError();
@@ -69,7 +69,7 @@ public class AuthorController extends RestControllerBase {
 
                 authorToUpdate.setFirstname(author.getFirstname());
                 authorToUpdate.setLastname(author.getLastname());
-                authorToUpdate.setPhoto(author.getPhoto());
+                authorToUpdate.setImage(author.getImage());
 
                 Author result = authorRepository.save(authorToUpdate);
 

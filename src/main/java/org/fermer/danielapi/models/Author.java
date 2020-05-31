@@ -26,8 +26,9 @@ public class Author {
     @Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "photo")
-    private String photo;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "image_id")
+    private Image image;
 
     @JsonIgnore
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
@@ -35,10 +36,10 @@ public class Author {
 
     public Author() {}
 
-    public Author(String firstname, String lastname, String photo) {
+    public Author(String firstname, String lastname, Image image) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.photo = photo;
+        this.image = image;
     }
 
     // getters and setters
@@ -70,12 +71,12 @@ public class Author {
 
     //
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
-    public String getPhoto() {
-        return photo;
+    public Image getImage() {
+        return image;
     }
 
     //
