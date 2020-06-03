@@ -28,6 +28,9 @@
   padding: 30px;
   display: flex;
   justify-content: center;
+  align-content: flex-start;
   flex-wrap: wrap;
-  width: 100%;
+  width: 80%;
+
+  margin: 0 auto;
 }

@@ -59,7 +59,7 @@ public class BookController extends RestControllerBase {
         }
     }
 
-    @PostMapping("/books/")
+    @PostMapping("/books")
     public ResponseEntity<Book> createBook(@RequestBody BookDto book) {
         try {
             Optional<Author> author = authorRepository.findById(book.getAuthorId());
@@ -79,6 +79,7 @@ public class BookController extends RestControllerBase {
                     book.getGenre(),
                     book.getYear(),
                     book.getFilename(),
+                    book.getDescription(),
                     image.get(),
                     author.get()
 

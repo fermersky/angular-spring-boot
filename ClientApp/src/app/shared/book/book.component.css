@@ -6,7 +6,7 @@
   border-radius: 10px;
   overflow: hidden;
 
-  margin: 20px;
+  margin: 40px;
 }
 
 .book-cover-wrap {
@@ -29,6 +29,9 @@
   left: 0;
   right: 0;
   backdrop-filter: blur(4px) opacity(0.5);
+  /* background-color: rgba(0, 0, 0, 0.137); */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .book-img--normal {

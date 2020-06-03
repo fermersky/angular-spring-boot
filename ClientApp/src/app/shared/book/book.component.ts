@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'bks-shared-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookComponent implements OnInit {
   @Input() id: number;

@@ -41,13 +41,14 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, String genre, int year, String filename, Image image, Author author) {
+    public Book(String title, String genre, int year, String filename, String description, Image image, Author author) {
         this.title = title;
         this.genre = genre;
         this.year = year;
         this.filename = filename;
         this.image = image;
         this.author = author;
+        this.description = description;
     }
 
     // getters and setters
