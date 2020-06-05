@@ -1,0 +1,31 @@
+<div class="main-book-container" *ngIf="book">
+  <div class="book-img-wrap">
+    <img [src]="book.image.picBytes | toValidSrc" [alt]="book.title" />
+  </div>
+  <div class="book-info">
+    <h1 class="book-title">{{ book.title }}</h1>
+    <div class="book-author">
+      <div class="book-author-img-wrap">
+        <img
+          [src]="book.author.image.picBytes | toValidSrc"
+          [alt]="book.author.firstname + ' ' + book.author.lastname"
+        />
+      </div>
+      <h2 class="book-author-fullname">{{ book.author.firstname + " " + book.author.lastname }}</h2>
+    </div>
+    <div class="book-genre">
+      Genre: <b>{{ book.genre }}</b>
+    </div>
+    <div class="book-description">
+      <p>{{ book.description }}</p>
+    </div>
+
+    <a id="download-btn" href="#" mat-raised-button color="primary"
+      ><i class="fas fa-download"></i>Download</a
+    >
+  </div>
+</div>
+
+<div class="book-not-found" *ngIf="!book">
+  <h1>404</h1>
+</div>

@@ -1,0 +1,80 @@
+.main-book-container {
+  padding: 50px;
+  display: flex;
+  justify-content: stretch;
+  align-items: flex-start;
+}
+
+.book-img-wrap {
+  min-width: 260px;
+  background: #fff;
+  max-height: auto;
+  padding: 10px;
+  display: flex;
+  box-shadow: 5px 5px 10px #eee;
+}
+
+.book-img-wrap > img {
+  max-width: 100%;
+  height: inherit;
+}
+
+.book-info {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title {
+  font-size: 5em;
+  font-weight: bold;
+  color: rgb(37, 37, 37);
+}
+
+.book-author {
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.book-author-img-wrap {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.book-author-img-wrap > img {
+  max-width: 100%;
+}
+
+.book-author-fullname {
+  font-size: 1.2em;
+  font-weight: normal;
+  margin: 5px 10px;
+
+  text-transform: uppercase;
+}
+
+.book-description {
+  max-width: 600px;
+  padding-top: 20px;
+  font-size: 1.1em;
+  line-height: 25px;
+}
+
+.book-genre {
+  text-transform: capitalize;
+  font-size: 1.2em;
+  font-style: italic;
+  padding-top: 30px;
+}
+
+#download-btn {
+  align-self: flex-start;
+  margin-top: 20px;
+}
+
+.fas {
+  margin-right: 10px;
+}

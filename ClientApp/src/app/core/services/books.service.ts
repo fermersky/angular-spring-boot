@@ -12,4 +12,8 @@ export class BooksService {
   get(): Observable<IFetchedBook[]> {
     return this.http.get<IFetchedBook[]>(`${this.baseUrl}/books`);
   }
+
+  getById(id: number): Observable<IFetchedBook> {
+    return this.http.get<IFetchedBook>(`${this.baseUrl}/books/${id}`);
+  }
 }

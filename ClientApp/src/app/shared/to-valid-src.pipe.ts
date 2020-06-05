@@ -1,7 +1,7 @@
 import { PipeTransform, Pipe } from '@angular/core';
 
-@Pipe({ name: 'toBase64' })
-export class ToBase64 implements PipeTransform {
+@Pipe({ name: 'toValidSrc' })
+export class ToValidSrcPipe implements PipeTransform {
   transform(value: any): string {
     const base64 = value;
 

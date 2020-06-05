@@ -15,7 +15,7 @@
       [title]="b.title"
       [author]="b.author.firstname + ' ' + b.author.lastname"
       [genre]="b.genre"
-      imageSrc="{{ b.image.picBytes | toBase64 }}"
+      imageSrc="{{ b.image.picBytes | toValidSrc }}"
     ></bks-shared-book>
   </div>
 </div>
