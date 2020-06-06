@@ -1,6 +1,7 @@
 package org.fermer.danielapi.controllers;
 
 import org.fermer.danielapi.core.RestControllerBase;
+import org.fermer.danielapi.repositories.BookRepository;
 import org.fermer.danielapi.repositories.FileRepository;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -15,9 +16,11 @@ import org.fermer.danielapi.models.File;
 @CrossOrigin("http://localhost:4200")
 public class FileController extends RestControllerBase {
     private final FileRepository fileRepository;
+    private final BookRepository bookRepository;
 
-    public FileController(FileRepository fileRepository) {
+    public FileController(FileRepository fileRepository, BookRepository bookRepository) {
         this.fileRepository = fileRepository;
+        this.bookRepository = bookRepository;
     }
 
     @GetMapping("/files/get/{filename}")
@@ -28,6 +31,17 @@ public class FileController extends RestControllerBase {
         if (retrievedFile.isEmpty()) {
             return notFound();
         }
+
+        var bookToUpdate = bookRepository.findByFilename(filename);
+
+        if (bookToUpdate.isEmpty()) {
+            return notFound();
+        }
+
+        var book = bookToUpdate.get();
+
+
+        bookRepository.updateDownloadsCountById(book.getId(), book.getDownloadsCount() + 1);
 
         byte[] bytes = retrievedFile.get().getPicBytes();
         InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(bytes));
