@@ -34,7 +34,8 @@ public class DanielapiApplication {
 	public String signIn(@RequestBody SignInDto signInDto) {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInDto.getUsername(), signInDto.getPassword()));
-			return jwtProvider.createToken(signInDto.getUsername());
+
+			return "{\"token\":\"" + jwtProvider.createToken(signInDto.getUsername()) + "\" }";
 		} catch (AuthenticationException e){
 			System.out.println("Log in failed for user, " + signInDto.getUsername());
 		}

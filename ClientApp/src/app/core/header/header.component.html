@@ -12,8 +12,22 @@
         >
       </li>
       <li class="nav-item">
-        <a mat-button color="primary" href="#" class="nav-link"
-          ><i class="fas fa-sign-in-alt"></i>Sing In</a
+        <a
+          *ngIf="!authService.isSignedIn()"
+          mat-button
+          color="primary"
+          [routerLink]="['account/signin']"
+          class="nav-link"
+          ><i class="fas fa-sign-in-alt"></i>Sign In</a
+        >
+
+        <a
+          *ngIf="authService.isSignedIn()"
+          mat-button
+          color="primary"
+          (click)="signOut()"
+          class="nav-link"
+          ><i class="fas fa-chevron-circle-left"></i>Log Out</a
         >
       </li>
     </ul>
