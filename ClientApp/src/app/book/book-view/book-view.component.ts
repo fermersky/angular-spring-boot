@@ -1,5 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { IFetchedBook } from 'src/app/core/interfaces';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'bks-book-view',
@@ -9,8 +17,13 @@ import { IFetchedBook } from 'src/app/core/interfaces';
 })
 export class BookViewComponent implements OnInit {
   @Input() book: IFetchedBook;
+  @Output() onDownloadClick = new EventEmitter<String>();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  downloadFile(): void {
+    this.onDownloadClick.emit(this.book.filename);
+  }
 }
