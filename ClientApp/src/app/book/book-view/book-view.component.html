@@ -20,7 +20,7 @@
       Downloads: <b>{{ book.downloadsCount }}</b>
     </div>
     <div class="book-description">
-      <p>{{ book.description }}</p>
+      <p>{{ book.description | splitIntoParagraphs }}</p>
     </div>
 
     <a (click)="downloadFile()" id="download-btn" mat-raised-button color="primary"
