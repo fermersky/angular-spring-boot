@@ -16,12 +16,13 @@ import { FooterComponent } from './footer/footer.component';
 
 // services
 import { BooksService } from './services/books.service';
+import { FilesService } from './services/files.service';
 
 @NgModule({
   declarations: [HeaderComponent, MainContainerComponent, FooterComponent],
   imports: [MaterialModule, RouterModule, HttpClientModule],
   exports: [HeaderComponent, MainContainerComponent, FooterComponent],
-  providers: [BooksService],
+  providers: [BooksService, FilesService],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
