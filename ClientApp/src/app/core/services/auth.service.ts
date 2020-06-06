@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class AuthSercie {
+export class AuthService {
   authenticate(token: string) {
     localStorage.setItem('token', token);
   }

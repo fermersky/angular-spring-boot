@@ -19,13 +19,13 @@ import { FooterComponent } from './footer/footer.component';
 import { BooksService } from './services/books.service';
 import { FilesService } from './services/files.service';
 import { AccountService } from './services/account.service';
-import { AuthSercie } from './services/auth.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [HeaderComponent, MainContainerComponent, FooterComponent],
   imports: [MaterialModule, RouterModule, HttpClientModule, CommonModule],
   exports: [HeaderComponent, MainContainerComponent, FooterComponent],
-  providers: [BooksService, FilesService, AccountService, AuthSercie],
+  providers: [BooksService, FilesService, AccountService, AuthService],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

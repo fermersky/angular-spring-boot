@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AccountService } from 'src/app/core/services/account.service';
 import { SubSink } from 'subsink';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthSercie } from 'src/app/core/services/auth.service';
-import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -22,9 +22,9 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   constructor(
     private accountService: AccountService,
-    private authService: AuthSercie,
-    private router: Router,
+    private authService: AuthService,
     private snackBar: MatSnackBar,
+    private router: Router,
     private fb: FormBuilder
   ) {}
 
@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       const password = this.password.value;
 
       this.subsink.sink = this.accountService.signIn(username, password).subscribe((res) => {
-        if (this.isResponseValid(res)) {
+        if (this.isNotValid(res)) {
           this.snackBar.open('Invalid username or password', 'Got it');
         } else {
           this.authenticate(res);
@@ -54,7 +54,7 @@ export class SignInComponent implements OnInit, OnDestroy {
     }
   }
 
-  private isResponseValid(res: any): boolean {
+  private isNotValid(res: any): boolean {
     return !res || !res.token;
   }
 

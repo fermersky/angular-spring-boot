@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthSercie } from '../services/auth.service';
 import { Router } from '@angular/router';
+
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'bks-core-header',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public authService: AuthSercie, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   signOut(): void {
     this.authService.signOut();
