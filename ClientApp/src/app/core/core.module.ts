@@ -9,6 +9,7 @@ import { MaterialModule } from '../material/material.module';
 
 // guards
 import { EnsureModuleLoadedOnceGuard } from './ensure-module-loaded-once.guard';
+import { AuthrorizeGuard } from './authorize.guard';
 
 // components
 import { HeaderComponent } from './header/header.component';
@@ -25,7 +26,7 @@ import { AuthService } from './services/auth.service';
   declarations: [HeaderComponent, MainContainerComponent, FooterComponent],
   imports: [MaterialModule, RouterModule, HttpClientModule, CommonModule],
   exports: [HeaderComponent, MainContainerComponent, FooterComponent],
-  providers: [BooksService, FilesService, AccountService, AuthService],
+  providers: [BooksService, FilesService, AccountService, AuthService, AuthrorizeGuard],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

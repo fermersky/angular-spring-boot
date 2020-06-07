@@ -1,0 +1,142 @@
+<div class="create-book-container">
+  <div class="create-book-form-wrap">
+    <form [formGroup]="createBookForm" class="create-book-form">
+      <img class="create-book-img" src="../../../assets/images/create-book-draw.svg" alt="" />
+      <!-- TITLE FIELD -->
+
+      <mat-form-field class="create-form-field" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" [formControl]="title" />
+        <mat-hint> </mat-hint>
+        <mat-error *ngIf="title.hasError('required')">
+          Title is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="title.hasError('minlength')">
+          Title is <strong>too short</strong>
+        </mat-error>
+        <mat-error *ngIf="title.hasError('maxlength')">
+          Title is <strong>too long</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- END TITLE FIELD -->
+
+      <div class="author-fullname-wrap">
+        <!-- AUTHOR SELECTION FIELD -->
+
+        <div class="author-fullname-fields">
+          <mat-form-field class="author-fullname-field" appearance="fill">
+            <mat-label>Firstname</mat-label>
+            <input matInput type="text" [formControl]="authorFirstName" />
+            <mat-hint> </mat-hint>
+            <mat-error *ngIf="authorFirstName.hasError('required')">
+              Firstname is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="authorFirstName.hasError('minlength')">
+              Firstname is <strong>too short</strong>
+            </mat-error>
+            <mat-error *ngIf="authorFirstName.hasError('maxlength')">
+              Firstname is <strong>too long</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="author-fullname-field" appearance="fill">
+            <mat-label>Lastname</mat-label>
+            <input matInput type="text" [formControl]="authorLastName" />
+            <mat-hint> </mat-hint>
+            <mat-error *ngIf="authorLastName.hasError('required')">
+              Lastname is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="authorLastName.hasError('minlength')">
+              Lastname is <strong>too short</strong>
+            </mat-error>
+            <mat-error *ngIf="authorLastName.hasError('maxlength')">
+              Lastname is <strong>too long</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field style="width: 100%; margin-top: 20px;" appearance="fill">
+          <mat-label>Or choose from existent authors</mat-label>
+          <mat-select
+            #authorSelect
+            (selectionChange)="onSelectionChange(authorSelect.value)"
+            [disabled]="disableSelect"
+            [formControl]="authorId"
+          >
+            <mat-option value="">-- add new --</mat-option>
+            <mat-option value="option1">Option 1</mat-option>
+            <mat-option value="option3">Option 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- END AUTHOR SELECTION FIELD -->
+      </div>
+
+      <!-- GENRE FIELD -->
+
+      <mat-form-field class="create-form-field" appearance="fill">
+        <mat-label>Genre</mat-label>
+        <input matInput type="text" [formControl]="genre" />
+        <mat-hint> </mat-hint>
+        <mat-error *ngIf="genre.hasError('required')">
+          Genre is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="genre.hasError('minlength')">
+          Genre is <strong>too short</strong>
+        </mat-error>
+        <mat-error *ngIf="genre.hasError('maxlength')">
+          Genre is <strong>too long</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- END GENRE FIELD -->
+
+      <!-- YEAR FIELD -->
+
+      <mat-form-field class="create-form-field" appearance="fill">
+        <mat-label>Year</mat-label>
+        <input matInput type="number" [formControl]="year" />
+        <mat-hint> </mat-hint>
+        <mat-error *ngIf="year.hasError('required')"> Year is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="year.hasError('minlength')">
+          Year is <strong>too short</strong>
+        </mat-error>
+        <mat-error *ngIf="year.hasError('maxlength')">
+          Year is <strong>too long</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- END YEAR FIELD -->
+
+      <!-- DESCRIPTION FIELD -->
+
+      <mat-form-field class="create-form-field" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          style="height: 100px;"
+          matInput
+          type="number"
+          [formControl]="description"
+        ></textarea>
+        <mat-hint> </mat-hint>
+        <mat-error *ngIf="description.hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="description.hasError('minlength')">
+          Description is <strong>too short</strong>
+        </mat-error>
+        <mat-error *ngIf="description.hasError('maxlength')">
+          Description is <strong>too long</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- END DESCRIPTION FIELD -->
+
+      <h3>{{ createBookForm.valid }}</h3>
+      <code>
+        {{ createBookForm.value | json }}
+      </code>
+    </form>
+  </div>
+</div>
