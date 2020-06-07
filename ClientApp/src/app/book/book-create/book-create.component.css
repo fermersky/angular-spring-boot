@@ -80,3 +80,26 @@
 .author-fullname-field {
   width: 48%;
 }
+
+.upload-file-btn {
+  padding: 10px 25px;
+  background: #e3e3e3;
+  color: rgb(80, 80, 80);
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  margin: 10px 10px;
+}
+
+.upload-file-btn .fas {
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+.create-book-btn {
+  margin-top: 40px;
+  transform: scale(1.2);
+  margin-bottom: 20px;
+}

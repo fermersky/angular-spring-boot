@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IFetchedBook } from '../interfaces';
+import { IFetchedBook, IBookDto } from '../interfaces';
 
 @Injectable()
 export class BooksService {
@@ -15,5 +15,13 @@ export class BooksService {
 
   getById(id: number): Observable<IFetchedBook> {
     return this.http.get<IFetchedBook>(`${this.baseUrl}/books/${id}`);
+  }
+
+  post(book: IBookDto): Observable<IFetchedBook> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+
+    return this.http.post<IFetchedBook>(`${this.baseUrl}/books/`, book, { headers });
   }
 }

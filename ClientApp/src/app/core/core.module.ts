@@ -21,12 +21,22 @@ import { BooksService } from './services/books.service';
 import { FilesService } from './services/files.service';
 import { AccountService } from './services/account.service';
 import { AuthService } from './services/auth.service';
+import { AuthorsService } from './services/authors.service';
+import { ImagesService } from './services/images.service';
 
 @NgModule({
   declarations: [HeaderComponent, MainContainerComponent, FooterComponent],
   imports: [MaterialModule, RouterModule, HttpClientModule, CommonModule],
   exports: [HeaderComponent, MainContainerComponent, FooterComponent],
-  providers: [BooksService, FilesService, AccountService, AuthService, AuthrorizeGuard],
+  providers: [
+    BooksService,
+    FilesService,
+    AccountService,
+    AuthService,
+    AuthrorizeGuard,
+    AuthorsService,
+    ImagesService,
+  ],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

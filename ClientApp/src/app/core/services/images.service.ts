@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { IFetchedFile } from '../interfaces';
 
 @Injectable()
-export class FilesService {
-  private baseUrl = 'http://localhost:7000/api/files';
+export class ImagesService {
+  private baseUrl = 'http://localhost:7000/api/images';
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class FilesService {
 
   upload(file: File): Observable<IFetchedFile> {
     const formData = new FormData();
-    formData.append('file', file, file.name);
+    formData.append('imageFile', file, file.name);
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,

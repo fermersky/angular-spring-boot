@@ -6,7 +6,7 @@ export interface IFetchedBook {
   year: number;
   downloadsCount: number;
   filename: string;
-  image: IImage;
+  image: IFetchedFile;
   author: IFetchedAuthor;
 }
 
@@ -14,12 +14,22 @@ export interface IFetchedAuthor {
   id: number;
   firstname: string;
   lastname: string;
-  image: IImage;
+  image: IFetchedFile;
 }
 
-export interface IImage {
+export interface IFetchedFile {
   id: number;
   filename: string;
   type: string;
   picBytes: any;
+}
+
+export interface IBookDto {
+  title: string;
+  genre: string;
+  description: string;
+  year: number;
+  filename: string;
+  authorId: number;
+  imageId: number;
 }

@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BooksService } from 'src/app/core/services/books.service';
 import { FilesService } from 'src/app/core/services/files.service';
+import { AuthorsService } from 'src/app/core/services/authors.service';
+import { Observable } from 'rxjs';
+import { IFetchedAuthor, IFetchedFile, IBookDto, IFetchedBook } from 'src/app/core/interfaces';
+import { ImagesService } from 'src/app/core/services/images.service';
 
 @Component({
   selector: 'app-book-create',
@@ -15,21 +20,22 @@ export class BookCreateComponent implements OnInit {
   genre: FormControl;
   description: FormControl;
   year: FormControl;
-  authorFirstName: FormControl;
-  authorLastName: FormControl;
   authorId: FormControl;
 
-  // complex fields
-  file: FormControl;
-  image: FormControl;
+  fileToUpload: File = null;
+  imageToUpload: File = null;
 
   createBookForm: FormGroup;
 
-  disableSelect = false;
+  authors$: Observable<IFetchedAuthor[]>;
+  uploadingResults: IFetchedFile[];
 
   constructor(
+    private authorsService: AuthorsService,
+    private imagesService: ImagesService,
     private booksService: BooksService,
     private filesService: FilesService,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private router: Router
   ) {}
@@ -37,25 +43,70 @@ export class BookCreateComponent implements OnInit {
   ngOnInit(): void {
     this.initializeControls();
     this.initializeGroup();
+
+    this.authors$ = this.fetchAuthors();
   }
 
-  onSelectionChange(value: string) {
-    const fnControl = this.createBookForm.get('authorFirstName');
-    const lnControl = this.createBookForm.get('authorLastName');
+  onFileInput(files: FileList): void {
+    this.fileToUpload = files.item(0);
+  }
+  onImageInput(files: FileList): void {
+    this.imageToUpload = files.item(0);
+  }
 
-    if (value) {
-      fnControl.setValue('');
-      lnControl.setValue('');
+  async onFormSubmit() {
+    if (!this.formValid()) {
+      this.snackBar.open('Form validation failed', 'Got it');
+      this.createBookForm.updateValueAndValidity();
 
-      fnControl.clearValidators();
-      lnControl.clearValidators();
-    } else {
-      fnControl.setValidators(this.getAuthorNameValidators());
-      lnControl.setValidators(this.getAuthorNameValidators());
+      return;
     }
 
-    fnControl.updateValueAndValidity();
-    lnControl.updateValueAndValidity();
+    try {
+      this.uploadingResults = await Promise.all([
+        this.uploadFile(this.fileToUpload),
+        this.uploadImage(this.imageToUpload),
+      ]);
+
+      const bookDto = this.getBookDtoFromControls();
+      const result: IFetchedBook = await this.booksService.post(bookDto).toPromise();
+
+      this.router.navigate(['book/details/' + result.id]);
+      this.snackBar.open('Book was successfully created!', 'Great!');
+    } catch (err) {
+      this.snackBar.open('An error occurred due creation of book', 'Got it');
+    }
+  }
+
+  private async uploadFile(file: File): Promise<IFetchedFile> {
+    return this.filesService.upload(file).toPromise();
+  }
+
+  private async uploadImage(file: File): Promise<IFetchedFile> {
+    return this.imagesService.upload(file).toPromise();
+  }
+
+  private getBookDtoFromControls(): IBookDto {
+    return {
+      title: this.createBookForm.get('title').value,
+      authorId: this.createBookForm.get('authorId').value,
+      genre: this.createBookForm.get('genre').value,
+      description: this.createBookForm.get('description').value,
+      year: this.createBookForm.get('year').value,
+      filename: this.uploadingResults[0].filename,
+      imageId: this.uploadingResults[1].id,
+    };
+  }
+
+  private fetchAuthors(): Observable<IFetchedAuthor[]> {
+    return this.authorsService.get(false);
+  }
+
+  private formValid(): boolean {
+    const filesSelected: boolean = this.fileToUpload && this.imageToUpload ? true : false;
+    const formValid: boolean = this.createBookForm.valid;
+
+    return filesSelected && formValid;
   }
 
   private initializeControls(): void {
@@ -83,13 +134,7 @@ export class BookCreateComponent implements OnInit {
       Validators.maxLength(4),
     ]);
 
-    this.authorId = this.fb.control('');
-    this.authorFirstName = this.fb.control('', this.getAuthorNameValidators());
-    this.authorLastName = this.fb.control('', this.getAuthorNameValidators());
-  }
-
-  private getAuthorNameValidators(): ValidatorFn[] {
-    return [Validators.required, Validators.minLength(3), Validators.maxLength(30)];
+    this.authorId = this.fb.control('', Validators.required);
   }
 
   private initializeGroup(): void {
@@ -99,8 +144,6 @@ export class BookCreateComponent implements OnInit {
       description: this.description,
       year: this.year,
       authorId: this.authorId,
-      authorFirstName: this.authorFirstName,
-      authorLastName: this.authorLastName,
     });
   }
 }
