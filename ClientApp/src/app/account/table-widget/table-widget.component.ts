@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
+import { IEntityInfoDto } from 'src/app/core/interfaces';
 
 @Component({
   selector: 'acc-table-widget',
@@ -6,10 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@a
   styleUrls: ['./table-widget.component.css'],
 })
 export class TableWidgetComponent implements OnInit, OnDestroy {
-  @Input() summary: string;
-  @Input() count: number;
-  @Input() suffix: number;
-  @Input() prefix: number;
+  @Input() entityInfo: IEntityInfoDto;
   @Input() intervalRange: number;
 
   mutableCount: number = 0;
@@ -19,10 +17,10 @@ export class TableWidgetComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.interval = setInterval(() => {
-      if (this.mutableCount < this.count) {
+      if (this.mutableCount < this.entityInfo.value) {
         this.mutableCount++;
       }
-    }, this.intervalRange / this.count);
+    }, this.intervalRange / this.entityInfo.value);
   }
 
   ngOnDestroy(): void {
