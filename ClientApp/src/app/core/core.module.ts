@@ -1,7 +1,7 @@
 // anuglar
 import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 // modules
@@ -24,6 +24,8 @@ import { AuthService } from './services/auth.service';
 import { AuthorsService } from './services/authors.service';
 import { ImagesService } from './services/images.service';
 
+import { AppendBearerTokenInterceptor } from './append-bearer-token.interceptor';
+
 @NgModule({
   declarations: [HeaderComponent, MainContainerComponent, FooterComponent],
   imports: [MaterialModule, RouterModule, HttpClientModule, CommonModule],
@@ -36,6 +38,7 @@ import { ImagesService } from './services/images.service';
     AuthrorizeGuard,
     AuthorsService,
     ImagesService,
+    { provide: HTTP_INTERCEPTORS, useClass: AppendBearerTokenInterceptor, multi: true },
   ],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

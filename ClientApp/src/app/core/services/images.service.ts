@@ -18,10 +18,6 @@ export class ImagesService {
     const formData = new FormData();
     formData.append('imageFile', file, file.name);
 
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-
-    return this.http.post<IFetchedFile>(`${this.baseUrl}/upload`, formData, { headers: headers });
+    return this.http.post<IFetchedFile>(`${this.baseUrl}/upload`, formData);
   }
 }

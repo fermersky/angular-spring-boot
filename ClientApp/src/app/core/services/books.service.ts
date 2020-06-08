@@ -18,10 +18,6 @@ export class BooksService {
   }
 
   post(book: IBookDto): Observable<IFetchedBook> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-
-    return this.http.post<IFetchedBook>(`${this.baseUrl}/books/`, book, { headers });
+    return this.http.post<IFetchedBook>(`${this.baseUrl}/books/`, book);
   }
 }
