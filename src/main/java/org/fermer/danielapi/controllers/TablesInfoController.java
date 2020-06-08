@@ -2,7 +2,6 @@ package org.fermer.danielapi.controllers;
 
 import org.fermer.danielapi.core.RestControllerBase;
 import org.fermer.danielapi.dtos.TableInfoDto;
-import org.fermer.danielapi.dtos.TablesInfoDto;
 import org.fermer.danielapi.repositories.AuthorRepository;
 import org.fermer.danielapi.repositories.BookRepository;
 import org.fermer.danielapi.repositories.FileRepository;

@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -22,6 +23,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSnackBarModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}
