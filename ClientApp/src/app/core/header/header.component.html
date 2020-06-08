@@ -1,21 +1,33 @@
 <header class="header">
   <nav class="header-nav">
     <ul class="header-list flex-row">
-      <li class="nav-item">
-        <a [routerLink]="['home']" mat-button color="primary" class="nav-link"
-          ><i class="fas fa-home"></i>Home</a
-        >
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['books']" mat-button color="primary" class="nav-link"
-          ><i class="fas fa-book"></i>Books</a
-        >
-      </li>
+      <div class="flex-row">
+        <li class="nav-item">
+          <a [routerLink]="['home']" mat-button color="primary" class="nav-link"
+            ><i class="fas fa-home"></i>Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['books']" mat-button color="primary" class="nav-link"
+            ><i class="fas fa-book"></i>Books</a
+          >
+        </li>
+        <li>
+          <a
+            *ngIf="authService.isSignedIn()"
+            mat-button
+            color="primary"
+            [routerLink]="['account/panel']"
+            class="nav-link"
+            ><i class="fas fa-table"></i>Panel</a
+          >
+        </li>
+      </div>
       <li class="nav-item">
         <a
           *ngIf="!authService.isSignedIn()"
-          mat-button
-          color="primary"
+          mat-raised-button
+          color="accent"
           [routerLink]="['account/signin']"
           class="nav-link"
           ><i class="fas fa-sign-in-alt"></i>Sign In</a
@@ -23,11 +35,11 @@
 
         <a
           *ngIf="authService.isSignedIn()"
-          mat-button
-          color="primary"
+          mat-raised-button
+          color="warn"
           (click)="signOut()"
           class="nav-link"
-          ><i class="fas fa-chevron-circle-left"></i>Log Out</a
+          >Log Out</a
         >
       </li>
     </ul>

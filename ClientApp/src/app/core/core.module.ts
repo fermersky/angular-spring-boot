@@ -23,7 +23,9 @@ import { AccountService } from './services/account.service';
 import { AuthService } from './services/auth.service';
 import { AuthorsService } from './services/authors.service';
 import { ImagesService } from './services/images.service';
+import { DatabaseInfoService } from './services/database.info.service';
 
+// interceptors
 import { AppendBearerTokenInterceptor } from './append-bearer-token.interceptor';
 
 @NgModule({
@@ -38,6 +40,7 @@ import { AppendBearerTokenInterceptor } from './append-bearer-token.interceptor'
     AuthrorizeGuard,
     AuthorsService,
     ImagesService,
+    DatabaseInfoService,
     { provide: HTTP_INTERCEPTORS, useClass: AppendBearerTokenInterceptor, multi: true },
   ],
 })

@@ -33,3 +33,10 @@ export interface IBookDto {
   authorId: number;
   imageId: number;
 }
+
+export interface IEntityInfoDto {
+  value: number;
+  summary: string;
+  prefix: string;
+  suffix: string;
+}

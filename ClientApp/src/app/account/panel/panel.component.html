@@ -1,0 +1,10 @@
+<div class="main-panel-container">
+  <acc-table-widget
+    *ngFor="let row of entitiesInfo"
+    [count]="row.value"
+    [summary]="row.summary"
+    [suffix]="row.suffix"
+    [prefix]="row.prefix"
+    [intervalRange]="2000"
+  ></acc-table-widget>
+</div>
