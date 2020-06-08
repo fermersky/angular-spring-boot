@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookCreateComponent } from './book-create/book-create.component';
 
-import { AuthrorizeGuard } from '../core/authorize.guard';
+import { AuthrorizeGuard } from '../core/guards/authorize.guard';
 
 const routes: Routes = [
   {

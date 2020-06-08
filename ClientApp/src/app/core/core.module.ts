@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 
 // guards
-import { EnsureModuleLoadedOnceGuard } from './ensure-module-loaded-once.guard';
-import { AuthrorizeGuard } from './authorize.guard';
+import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
+import { AuthrorizeGuard } from './guards/authorize.guard';
 
 // components
 import { HeaderComponent } from './header/header.component';
@@ -24,14 +24,17 @@ import { AuthService } from './services/auth.service';
 import { AuthorsService } from './services/authors.service';
 import { ImagesService } from './services/images.service';
 import { DatabaseInfoService } from './services/database.info.service';
+import { EventBusService } from './services/event-bus.service';
 
 // interceptors
-import { AppendBearerTokenInterceptor } from './append-bearer-token.interceptor';
+import { AppendBearerTokenInterceptor } from './interceptors/append-bearer-token.interceptor';
+import { OverlayInterceptor } from './interceptors/overlay.interceptor';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
-  declarations: [HeaderComponent, MainContainerComponent, FooterComponent],
+  declarations: [HeaderComponent, MainContainerComponent, FooterComponent, OverlayComponent],
   imports: [MaterialModule, RouterModule, HttpClientModule, CommonModule],
-  exports: [HeaderComponent, MainContainerComponent, FooterComponent],
+  exports: [HeaderComponent, MainContainerComponent, FooterComponent, OverlayComponent],
   providers: [
     BooksService,
     FilesService,
@@ -41,7 +44,9 @@ import { AppendBearerTokenInterceptor } from './append-bearer-token.interceptor'
     AuthorsService,
     ImagesService,
     DatabaseInfoService,
+    EventBusService,
     { provide: HTTP_INTERCEPTORS, useClass: AppendBearerTokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: OverlayInterceptor, multi: true },
   ],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
