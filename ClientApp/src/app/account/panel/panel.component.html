@@ -5,3 +5,54 @@
     [intervalRange]="2000"
   ></acc-table-widget>
 </div>
+
+<div class="tables-container">
+  <div class="entity-table-wrap">
+    <div class="entity-table-summary">
+      <p class="entity-table-title"># Authors</p>
+      <a [routerLink]="['/author/create']" mat-raised-button color="primary">Create new</a>
+    </div>
+
+    <table class="entity-table" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let author of authors$ | async; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ author.firstname }}</td>
+          <td>{{ author.lastname }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="entity-table-wrap">
+    <div class="entity-table-summary">
+      <p class="entity-table-title"># Books</p>
+      <a [routerLink]="['/book/create']" mat-raised-button color="primary">Create new</a>
+    </div>
+    <table class="entity-table" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Genre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books$ | async; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author.firstname + " " + book.author.lastname }}</td>
+          <td>{{ book.genre }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

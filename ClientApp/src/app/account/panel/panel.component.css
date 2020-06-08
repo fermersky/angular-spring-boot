@@ -5,3 +5,47 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.tables-container {
+  display: flex;
+  padding: 60px;
+}
+
+.entity-table-wrap {
+  width: 50%;
+  margin: 30px;
+}
+
+.entity-table {
+  box-shadow: 5px 5px 20px #ccc;
+  width: 100%;
+  background: #fff;
+}
+
+.entity-table th,
+td {
+  text-align: left;
+  padding: 20px;
+}
+
+.entity-table thead {
+  background: rgb(240, 240, 240);
+}
+
+.entity-table td {
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.entity-table-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 20px 20px;
+}
+
+.entity-table-title {
+  font-size: 1.2em;
+  font-style: italic;
+  color: rgb(139, 139, 139);
+  margin: 0;
+}
