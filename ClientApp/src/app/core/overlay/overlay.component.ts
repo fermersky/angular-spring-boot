@@ -15,7 +15,7 @@ import { tap } from 'rxjs/operators';
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(-50%);
         background: #fff;
         padding: 50px;
         border-radius: 20px;
