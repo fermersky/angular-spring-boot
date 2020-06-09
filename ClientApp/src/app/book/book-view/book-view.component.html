@@ -11,7 +11,11 @@
           [alt]="book.author.firstname + ' ' + book.author.lastname"
         />
       </div>
-      <h2 class="book-author-fullname">{{ book.author.firstname + " " + book.author.lastname }}</h2>
+      <a class="book-author-details-link" [routerLink]="['/author/details/' + book.author.id]">
+        <h2 class="book-author-fullname">
+          {{ book.author.firstname + " " + book.author.lastname }}
+        </h2>
+      </a>
     </div>
     <div class="book-genre">
       Genre: <b>{{ book.genre }}</b>
