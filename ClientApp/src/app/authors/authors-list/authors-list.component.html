@@ -1,0 +1,17 @@
+<div class="main-authors-container">
+  <h1 class="authors-container-header">Choose your hero!</h1>
+
+  <ul class="authors-list">
+    <li *ngFor="let author of authors$ | async" class="author-item">
+      <div class="author-img-wrap">
+        <img
+          [src]="author.image.picBytes | toValidSrc"
+          [alt]="author.firstname + ' ' + author.lastname"
+        />
+      </div>
+      <a [routerLink]="['/author/details/' + author.id]" class="author-summary-wrap">
+        <h3 class="author-summary-fullname">{{ author.firstname + " " + author.lastname }}</h3>
+      </a>
+    </li>
+  </ul>
+</div>
