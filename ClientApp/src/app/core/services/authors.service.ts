@@ -13,6 +13,10 @@ export class AuthorsService {
     return this.http.get<IFetchedAuthor[]>(`${this.baseUrl}/authors?withImages?=${withImages}`);
   }
 
+  getById(id: number): Observable<IFetchedAuthor> {
+    return this.http.get<IFetchedAuthor>(`${this.baseUrl}/authors/${id}`);
+  }
+
   post(firstname, lastname, imageId): Observable<IFetchedAuthor> {
     return this.http.post<IFetchedAuthor>(`${this.baseUrl}/authors`, {
       firstname,

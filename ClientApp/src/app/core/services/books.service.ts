@@ -17,6 +17,10 @@ export class BooksService {
     return this.http.get<IFetchedBook>(`${this.baseUrl}/books/${id}`);
   }
 
+  getByAuthor(authorId: number): Observable<IFetchedBook[]> {
+    return this.http.get<IFetchedBook[]>(`${this.baseUrl}/books/by/author/${authorId}`);
+  }
+
   post(book: IBookDto): Observable<IFetchedBook> {
     return this.http.post<IFetchedBook>(`${this.baseUrl}/books/`, book);
   }

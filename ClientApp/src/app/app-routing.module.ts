@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./author/author.module').then((m) => m.AuthorModule),
   },
   {
+    path: 'authors',
+    loadChildren: () => import('./authors/authors.module').then((m) => m.AuthorsModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',

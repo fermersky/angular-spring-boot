@@ -1,0 +1,25 @@
+<div class="author-details-container">
+  <div *ngIf="authorDetails" class="author-details-info">
+    <div class="author-img-wrap">
+      <img
+        [src]="authorDetails.image.picBytes | toValidSrc"
+        [alt]="authorDetails.firstname + ' ' + authorDetails.lastname"
+      />
+    </div>
+
+    <h1 class="author-fullname">
+      {{ authorDetails.firstname + " " + authorDetails.lastname }}
+    </h1>
+  </div>
+
+  <div *ngIf="books" class="books-list">
+    <bks-shared-book
+      *ngFor="let b of books"
+      [id]="b.id"
+      [title]="b.title"
+      [author]="b.author.firstname + ' ' + b.author.lastname"
+      [genre]="b.genre"
+      imageSrc="{{ b.image.picBytes | toValidSrc }}"
+    ></bks-shared-book>
+  </div>
+</div>

@@ -28,7 +28,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => this.fetchBookById(params['id']));
+    this.subsink.sink = this.route.params.subscribe((params) => this.fetchBookById(params['id']));
   }
 
   fetchBookById(id: number): void {

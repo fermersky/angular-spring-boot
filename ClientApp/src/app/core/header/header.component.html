@@ -12,6 +12,11 @@
             ><i class="fas fa-book"></i>Books</a
           >
         </li>
+        <li class="nav-item">
+          <a [routerLink]="['authors']" mat-button color="primary" class="nav-link"
+            ><i class="fas fa-users"></i>Authors</a
+          >
+        </li>
         <li>
           <a
             *ngIf="authService.isSignedIn()"
