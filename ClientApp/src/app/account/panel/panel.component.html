@@ -42,7 +42,7 @@
           <th>No.</th>
           <th>Title</th>
           <th>Author</th>
-          <th>Genre</th>
+          <th>Downloads</th>
         </tr>
       </thead>
       <tbody>
@@ -50,7 +50,7 @@
           <td>{{ i + 1 }}</td>
           <td>{{ book.title }}</td>
           <td>{{ book.author.firstname + " " + book.author.lastname }}</td>
-          <td>{{ book.genre }}</td>
+          <td>{{ book.downloadsCount }}</td>
         </tr>
       </tbody>
     </table>
