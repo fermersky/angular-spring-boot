@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.module').then((m) => m.AccountModule),
   },
   {
+    path: 'author',
+    loadChildren: () => import('./author/author.module').then((m) => m.AuthorModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',

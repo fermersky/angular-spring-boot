@@ -1,8 +1,10 @@
 package org.fermer.danielapi.controllers;
 
 import org.fermer.danielapi.core.RestControllerBase;
+import org.fermer.danielapi.dtos.AuthorDto;
 import org.fermer.danielapi.models.Author;
 import org.fermer.danielapi.repositories.AuthorRepository;
+import org.fermer.danielapi.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ import java.util.Optional;
 public class AuthorController extends RestControllerBase {
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
 
     @GetMapping("/authors")
     public ResponseEntity<List<Author>> getAllAuthors(@RequestParam(name = "withImages", defaultValue = "true")boolean withImages) {
@@ -55,10 +60,16 @@ public class AuthorController extends RestControllerBase {
     }
 
     @PostMapping("/authors")
-    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
+    public ResponseEntity<Author> createAuthor(@RequestBody AuthorDto authorDto) {
         try {
+            var image = imageRepository.findById(authorDto.getImageId());
+
+            if (image.isEmpty()) {
+                return notFound();
+            }
+
             Author authorToSave = authorRepository
-                    .save(new Author(author.getFirstname(), author.getLastname(), null));
+                    .save(new Author(authorDto.getFirstname(), authorDto.getLastname(), image.get()));
             return created(authorToSave);
         } catch (Exception e) {
             return internalError();

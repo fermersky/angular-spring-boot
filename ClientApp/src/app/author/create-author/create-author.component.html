@@ -1,0 +1,61 @@
+<div class="create-author-container">
+  <div class="create-author-form-wrap">
+    <form (ngSubmit)="onFormSubmit()" [formGroup]="createAuthorForm" class="create-author-form">
+      <img class="create-author-img" src="../../../assets/images/create-book-draw.svg" alt="" />
+
+      <!-- FIRSTNAME FIELD -->
+
+      <mat-form-field class="create-form-field" appearance="fill">
+        <mat-label>Firstname</mat-label>
+        <input [formControl]="firstname" matInput type="text" />
+        <mat-hint> </mat-hint>
+        <mat-error *ngIf="firstname.hasError('required')">
+          Firstname is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="firstname.hasError('minlength')">
+          Firstname is <strong>too short</strong>
+        </mat-error>
+        <mat-error *ngIf="firstname.hasError('maxlength')">
+          Firstname is <strong>too long</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- END FIRSTNAME FIELD -->
+
+      <!-- LASTNAME FIELD  -->
+
+      <mat-form-field class="create-form-field" appearance="fill">
+        <mat-label>Lastname</mat-label>
+        <input [formControl]="lastname" matInput type="text" />
+        <mat-hint> </mat-hint>
+        <mat-error *ngIf="lastname.hasError('required')">
+          Lastname is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="lastname.hasError('minlength')">
+          Lastname is <strong>too short</strong>
+        </mat-error>
+        <mat-error *ngIf="lastname.hasError('maxlength')">
+          Lastname is <strong>too long</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- END LASTNAME FIELD -->
+
+      <!-- UPLOAD IMAGE -->
+
+      <button class="upload-file-btn" type="button" (click)="fileImageInput.click()">
+        <span><i class="fas fa-file-image"></i>Upload Image</span>
+        <input
+          #fileImageInput
+          type="file"
+          (change)="onImageInput($event.target.files)"
+          style="display: none;"
+        />
+      </button>
+
+      <!-- END UPLOAD IMAGE -->
+
+      <button class="create-author-btn" mat-raised-button color="primary">Create Author</button>
+    </form>
+  </div>
+</div>

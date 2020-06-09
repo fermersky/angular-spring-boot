@@ -1,0 +1,72 @@
+.create-author-container {
+  background: url(../../../assets/images/create-book-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: auto;
+  display: flex;
+}
+
+.create-author-form-wrap {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 200px 0;
+
+  background: rgba(0, 0, 0, 0.719);
+}
+
+.create-author-img {
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -100px;
+}
+
+.create-author-form {
+  background: #eee;
+  padding: 15px;
+  width: 50%;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 15px;
+  box-shadow: 10px 10px 20px rgba(29, 29, 29, 0.699);
+
+  padding-top: 60px;
+}
+
+.create-form-field {
+  width: 70%;
+  margin-bottom: 20px;
+}
+
+.upload-file-btn {
+  padding: 10px 25px;
+  background: #e3e3e3;
+  color: rgb(80, 80, 80);
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  margin: 10px 10px;
+}
+
+.upload-file-btn .fas {
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+.create-author-btn {
+  margin-top: 40px;
+  transform: scale(1.2);
+  margin-bottom: 20px;
+}
