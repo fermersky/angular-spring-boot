@@ -20,14 +20,17 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class BookController extends RestControllerBase {
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
-    @Autowired
-    private ImageRepository imageRepository;
+    private final ImageRepository imageRepository;
+
+    public BookController(BookRepository bookRepository, AuthorRepository authorRepository, ImageRepository imageRepository) {
+        this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
+        this.imageRepository = imageRepository;
+    }
 
     @GetMapping("/books")
     public ResponseEntity<List<Book>> getAllBooks() {
@@ -39,6 +42,17 @@ public class BookController extends RestControllerBase {
             }
 
             return ok(books);
+        } catch (Exception ex) {
+            return internalError();
+        }
+    }
+
+    @GetMapping("/books/by/author/{id}")
+    public ResponseEntity<?> getBooksByAuthor(@PathVariable(name = "id") long authorId) {
+        try {
+            List<Book> booksByAuthor = bookRepository.findByAuthor(authorId);
+
+            return ok(booksByAuthor);
         } catch (Exception ex) {
             return internalError();
         }

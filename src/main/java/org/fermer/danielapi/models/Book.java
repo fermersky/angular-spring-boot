@@ -41,6 +41,17 @@ public class Book {
 
     public Book() {}
 
+    public Book(long id, String title, String genre, int year, String filename, String description, Image image, Author author) {
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.year = year;
+        this.filename = filename;
+        this.image = image;
+        this.author = author;
+        this.description = description;
+    }
+
     public Book(long id, int downloadsCount) {
         this.id = id;
         this.downloadsCount = downloadsCount;
